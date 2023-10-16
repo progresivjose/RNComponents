@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {SectionList, Text, View} from 'react-native';
 import HeaderTitle from '../components/HeaderTitle';
 import ItemSeparator from '../components/ItemSeparator';
+import {ThemeContext} from '../context/theme/ThemeContext';
 import {Casas, casas} from '../data/sectionList';
 import {styles} from '../themes/appTheme';
 
-// import { Container } from './styles';
-
 const CustomSectionListScreen: React.FC = () => {
+	const {
+		theme: {colors},
+	} = useContext(ThemeContext);
+
 	return (
 		<View style={styles.globalMargin}>
 			<SectionList
@@ -17,7 +20,7 @@ const CustomSectionListScreen: React.FC = () => {
 					<HeaderTitle title={section.casa} />
 				)}
 				renderItem={({item}) => {
-					return <Text style={{color: 'black'}}>{item}</Text>;
+					return <Text style={{color: colors.text}}>{item}</Text>;
 				}}
 				ListHeaderComponent={() => <HeaderTitle title="Section List" />}
 				ListFooterComponent={() => (

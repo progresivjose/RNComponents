@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Button, Modal, Text, View} from 'react-native';
 import HeaderTitle from '../components/HeaderTitle';
+import {ThemeContext} from '../context/theme/ThemeContext';
 import {styles} from '../themes/appTheme';
 
 const ModalScreen: React.FC = () => {
@@ -9,23 +10,27 @@ const ModalScreen: React.FC = () => {
 		setVisble(!visble);
 	};
 
+	const {
+		theme: {dividerColor, colors},
+	} = useContext(ThemeContext);
+
 	return (
 		<View style={styles.globalMargin}>
 			<HeaderTitle title="Modals" />
 
-			<Button title="Abir Modal" onPress={toggleModal} />
+			<Button title="Abir Modal" color={colors.primary} onPress={toggleModal} />
 
 			<Modal animationType="fade" visible={visble} transparent={true}>
 				<View
 					style={{
 						flex: 1,
-						backgroundColor: 'rgba(0,0,0,0.3)',
+						backgroundColor: dividerColor,
 						justifyContent: 'center',
 						alignItems: 'center',
 					}}>
 					<View
 						style={{
-							backgroundColor: 'white',
+							backgroundColor: colors.background,
 							width: 200,
 							height: 200,
 							justifyContent: 'center',
@@ -41,14 +46,18 @@ const ModalScreen: React.FC = () => {
 						<HeaderTitle title="Modal" />
 						<Text
 							style={{
-								color: 'black',
+								color: colors.text,
 								fontSize: 16,
 								fontWeight: '300',
 								marginBottom: 20,
 							}}>
 							Cuerpo del modal
 						</Text>
-						<Button title="Cerrar" onPress={toggleModal} />
+						<Button
+							title="Cerrar"
+							color={colors.primary}
+							onPress={toggleModal}
+						/>
 					</View>
 				</View>
 			</Modal>

@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {ActivityIndicator, FlatList, View} from 'react-native';
 import FadeImage from '../components/FadeImage';
 import HeaderTitle from '../components/HeaderTitle';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 const InifiteScrollScreen: React.FC = () => {
 	const [numbers, setNumbers] = useState<number[]>([0, 1, 2, 3, 4, 5]);
@@ -24,6 +25,10 @@ const InifiteScrollScreen: React.FC = () => {
 		);
 	};
 
+	const {
+		theme: {colors},
+	} = useContext(ThemeContext);
+
 	return (
 		<View>
 			<FlatList
@@ -42,7 +47,7 @@ const InifiteScrollScreen: React.FC = () => {
 								justifyContent: 'center',
 								alignItems: 'center',
 							}}>
-							<ActivityIndicator size={20} color="#5856d6" />
+							<ActivityIndicator size={20} color={colors.primary} />
 						</View>
 					);
 				}}

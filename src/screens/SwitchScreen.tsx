@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import CustomSwitch from '../components/CustomSwitch';
 import HeaderTitle from '../components/HeaderTitle';
+import {ThemeContext} from '../context/theme/ThemeContext';
 import {styles} from '../themes/appTheme';
 
 const SwitchScreen: React.FC = () => {
@@ -18,27 +19,37 @@ const SwitchScreen: React.FC = () => {
 		});
 	};
 
+	const {
+		theme: {colors},
+	} = useContext(ThemeContext);
+
 	return (
 		<View style={{flex: 1, ...styles.globalMargin}}>
 			<HeaderTitle title="Switches" />
 
 			<View style={customStyles.container}>
 				<View style={{flexDirection: 'row'}}>
-					<Text style={customStyles.switchText}>isActive</Text>
+					<Text style={{...customStyles.switchText, color: colors.text}}>
+						isActive
+					</Text>
 					<CustomSwitch
 						isOn={state.isActive}
 						onChange={value => onChange(value, 'isActive')}
 					/>
 				</View>
 				<View style={{flexDirection: 'row'}}>
-					<Text style={customStyles.switchText}>isHungry</Text>
+					<Text style={{...customStyles.switchText, color: colors.text}}>
+						isHungry
+					</Text>
 					<CustomSwitch
 						isOn={state.isHungry}
 						onChange={value => onChange(value, 'isHungry')}
 					/>
 				</View>
 				<View style={{flexDirection: 'row'}}>
-					<Text style={customStyles.switchText}>isHappy</Text>
+					<Text style={{...customStyles.switchText, color: colors.text}}>
+						isHappy
+					</Text>
 					<CustomSwitch
 						isOn={state.isHappy}
 						onChange={value => onChange(value, 'isHappy')}

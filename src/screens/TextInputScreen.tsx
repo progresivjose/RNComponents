@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
 	Keyboard,
 	KeyboardAvoidingView,
@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import CustomSwitch from '../components/CustomSwitch';
 import HeaderTitle from '../components/HeaderTitle';
+import {ThemeContext} from '../context/theme/ThemeContext';
 import {useForm} from '../hooks/useForm';
 import {styles} from '../themes/appTheme';
 
@@ -23,6 +24,10 @@ const TextInputScreen: React.FC = () => {
 		isSubscribed: false,
 	});
 
+	const {
+		theme: {colors},
+	} = useContext(ThemeContext);
+
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -32,7 +37,7 @@ const TextInputScreen: React.FC = () => {
 						<HeaderTitle title="Text Input" />
 
 						<TextInput
-							style={customStyles.textInput}
+							style={{...customStyles.textInput, color: colors.text}}
 							placeholder="Ingrese su nombre"
 							placeholderTextColor="gray"
 							autoCorrect={false}
@@ -40,7 +45,7 @@ const TextInputScreen: React.FC = () => {
 							onChangeText={(value: string) => onChange(value, 'name')}
 						/>
 						<TextInput
-							style={customStyles.textInput}
+							style={{...customStyles.textInput, color: colors.text}}
 							placeholder="Ingerese su email"
 							placeholderTextColor="gray"
 							autoCorrect={false}
@@ -57,25 +62,25 @@ const TextInputScreen: React.FC = () => {
 							/>
 						</View>
 						<View>
-							<Text style={customStyles.textView}>
+							<Text style={{...customStyles.textView, color: colors.text}}>
 								{JSON.stringify(form, null, 3)}
 							</Text>
 						</View>
 
 						<View>
-							<Text style={customStyles.textView}>
+							<Text style={{...customStyles.textView, color: colors.text}}>
 								{JSON.stringify(form, null, 3)}
 							</Text>
 						</View>
 
 						<View>
-							<Text style={customStyles.textView}>
+							<Text style={{...customStyles.textView, color: colors.text}}>
 								{JSON.stringify(form, null, 3)}
 							</Text>
 						</View>
 
 						<TextInput
-							style={customStyles.textInput}
+							style={{...customStyles.textInput, color: colors.text}}
 							placeholder="Ingrese su teléfono"
 							placeholderTextColor="gray"
 							onChangeText={(value: string) => onChange(value, 'phone')}
